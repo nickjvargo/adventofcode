@@ -1,4 +1,4 @@
-package com.company;
+package com.dayonepartone;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -16,7 +16,7 @@ public class Main {
 
         //Scan data.txt file and put into ArrayList data
         try {
-            scanner = new Scanner(new File("src/com/company/data.txt"));
+            scanner = new Scanner(new File("src/com/dayonepartone/data.txt"));
         } catch (FileNotFoundException e) {
             System.out.println("File not found, please make sure path is correct.");
         }
