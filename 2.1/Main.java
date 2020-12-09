@@ -1,34 +1,42 @@
 package com.company;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 public class Main {
 
-    //Counter used for correct passwords
-    private static int passwordsThatPass = 0;
-
     public static void main(String[] args) {
+
+        Scanner scanner = null;
+
+        //Scan data.txt file for policy and password list
+        try {
+            scanner = new Scanner(new File("src/com/company/data.txt"));;
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found, please make sure path is correct.");
+        }
+
+        //Counter used for correct passwords
+        int passwordsThatPass = 0;
 
         //Patterns used
         Pattern policyPattern = Pattern.compile(".*:");
         Pattern policyLetterMinPattern = Pattern.compile("\\d+");
 
-        //Copy and paste policy and password list
-        String policyAndPasswordString;
-
-        //Create String Array of policy and password list to iterate over
-        String[] policyAndPassword = policyAndPasswordString.split("\n");
-
         //Iterate over policy and password strings
-        for(int i = 0; i < policyAndPassword.length; i++) {
+        while (scanner.hasNext()) {
+
+            String policyAndPasswordString = scanner.nextLine();
 
             //Separate policy and password
-            Matcher policyMatcher = policyPattern.matcher(policyAndPassword[i]);
+            Matcher policyMatcher = policyPattern.matcher(policyAndPasswordString);
             policyMatcher.find();
             String policy = policyMatcher.group();
 
-            String password = policyAndPassword[i].substring(policy.length() + 1);
+            String password = policyAndPasswordString.substring(policy.length() + 1);
 
             //Get parameters out of policy String
             Character policyLetter = policy.charAt(policy.length() - 2);
