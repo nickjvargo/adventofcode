@@ -13,7 +13,8 @@ public class Main {
         int nextLocation = 0;
         int treesPassed = 0;
         Scanner scanner = null;
-
+        
+        /** Scan treemap.txt file */
         try {
             scanner = new Scanner(new File("src/com/company/treemap.txt"));
         } catch (FileNotFoundException e) {
