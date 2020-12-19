@@ -19,7 +19,7 @@ public class Main {
         //2D array to hold ranges in rules
         ArrayList<int[]> rulesRanges = new ArrayList<>();
 
-        //answer int to add invalid ticket values to to get ticket scanning error rate
+        //Answer int to add invalid ticket values to to get ticket scanning error rate
         int answer = 0;
 
         //Scan txt file for input
@@ -36,30 +36,30 @@ public class Main {
         //Separates tickets.txt into specified blocks, then pulls ranges from blocks
         rulesScanner = new Scanner(txtScanner.next());
 
-        //For the amount of numbers in rules...
+        //Finding adjacent numbers in rules...
         rulesScanner.useDelimiter("\\D+");
         while (rulesScanner.hasNext()) {
             int rangeLow = Integer.parseInt(rulesScanner.next());
             int rangeHigh = Integer.parseInt(rulesScanner.next());
             int rangeNumbers = rangeLow;
-            //...create ranges...
+            //...create ranges between the low and high...
             int[] range = new int[(rangeHigh - rangeLow) + 1];
             for (int i = 0; i < range.length; i++) {
                 range[i] = rangeNumbers;
                 rangeNumbers++;
             }
-            //...and add to rulesRanges ArrayList
+            //...and add range to rulesRanges ArrayList
             rulesRanges.add(range);
         }
 
-        //scanner for your ticket
+        //Scanner for your ticket
         yourTicketScanner = new Scanner(txtScanner.next());
-        
-        //scanner for other tickets
+
+        //Scanner for other tickets
         otherTicketsScanner = new Scanner(txtScanner.next());
         otherTicketsScanner.useDelimiter("\\D+");
-        
-        //loop through other tickets and compare with values kept in the rules ranges. If other ticket has a value that
+
+        //Loop through other tickets and compare with values kept in the rules ranges. If other ticket has a value that
         //is not within any of the rules ranges, that ticket value is false and is added to answer.
         while (otherTicketsScanner.hasNext()) {
             int otherTicketInt = Integer.parseInt(otherTicketsScanner.next());
@@ -84,7 +84,7 @@ public class Main {
             }
 
         }
-        
+
         System.out.println(answer);
 
     }
